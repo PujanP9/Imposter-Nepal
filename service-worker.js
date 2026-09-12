@@ -1,5 +1,5 @@
-const CACHE = 'imposter-nepal-v3';
-const FILES = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './icon.svg'];
+const CACHE = 'imposter-nepal-v4';
+const FILES = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './imposter-nepal-cartoon-icon.png.png'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
 self.addEventListener('fetch', event => {
