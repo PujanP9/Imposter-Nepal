@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#082c61" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Imposter Nepal" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <title>Who Is the Imposter? — Nepali Edition</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <div class="mountains" aria-hidden="true"></div><div class="dhaka-pattern" aria-hidden="true"></div>
+    <section id="setupScreen" class="screen setup-screen">
+      <header class="brand"><span class="flag-mark">🇳🇵</span><div><p class="eyebrow">PASS THE PHONE PARTY GAME</p><h1>WHO IS THE<br><em>IMPOSTER?</em></h1><p class="edition">NEPALI EDITION</p></div></header>
+      <p class="tagline">Pass the phone. Hide your role.<br>Catch the imposter.</p>
+      <form id="setupForm" class="setup-card" novalidate>
+        <div class="step-label"><span>01</span> YOUR CREW</div>
+        <label for="playerCount">How many are playing?</label>
+        <div class="count-row"><button class="count-button" type="button" id="minusBtn" aria-label="Decrease players">−</button><output id="countOutput">4</output><button class="count-button" type="button" id="plusBtn" aria-label="Increase players">+</button></div>
+        <div id="namesArea" class="names-area"></div>
+        <div class="step-label second"><span>02</span> SUSPICION LEVEL</div>
+        <label for="imposterCount">Number of imposters</label>
+        <div id="imposterOptions" class="imposter-options" role="radiogroup"></div>
+        <p id="formError" class="form-error" role="alert"></p>
+        <button class="primary-button" type="submit"><span>🎮</span> START GAME <b>→</b></button>
+        <p class="local-note">100% local • No scores • No spoilers</p>
+      </form>
+    </section>
+
+    <section id="handoffScreen" class="screen handoff-screen hidden" aria-live="polite">
+      <div class="round-pill">ROUND <span id="roundNumber">1</span> <i></i> ORDER RANDOMIZED</div>
+      <div class="phone-icon">📱</div><p class="eyebrow">PASS THE PHONE</p>
+      <p class="pass-copy">Pass the phone to</p><h2 id="currentPlayerName">Player</h2>
+      <p class="privacy-mini">Make sure nobody else is looking.</p>
+      <button id="readyBtn" class="primary-button">I'M READY <b>→</b></button>
+      <div class="progress-wrap"><div class="progress-bar"><div id="progressFill"></div></div><p id="progressText"></p></div>
+    </section>
+
+    <section id="roleScreen" class="screen role-screen hidden" aria-live="polite">
+      <div class="private-lock">⚠️ KEEP THIS PRIVATE</div><p class="private-sub">Do not show this screen to anyone else.</p>
+      <article id="roleCard" class="role-card">
+        <div id="roleIcon" class="role-icon">🟢</div><p id="roleTitle" class="role-title"></p>
+        <div class="role-divider"></div><p id="roleLabel" class="role-label"></p><h2 id="roleValue"></h2><p id="roleInstruction" class="role-instruction"></p>
+      </article>
+      <button id="nextBtn" class="outline-button"></button>
+    </section>
+
+    <section id="endScreen" class="screen end-screen hidden">
+      <div class="end-symbol">🔥</div><p class="eyebrow">PHONE PHASE COMPLETE</p><h2>EVERYONE HAS<br>THEIR SECRET!</h2>
+      <div class="end-card"><p>Put the phone down. 📱</p><div></div><p>Give your clues. Discuss.<br><strong>Find the Imposter.</strong></p><small>Decide the winner together — offline.</small></div>
+      <button id="newRoundBtn" class="primary-button">🔄 START NEW ROUND</button><button id="newGameBtn" class="text-button">⌂ START NEW GAME</button>
+    </section>
+    <button id="musicBtn" class="music-button" type="button" aria-pressed="false">🎵 <span>MUSIC OFF</span></button>
+  </main>
+  <script src="app.js"></script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js');</script>
+</body>
+</html>
