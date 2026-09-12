@@ -1,4 +1,4 @@
-const CACHE = 'imposter-nepal-v5';
+const CACHE = 'imposter-nepal-v6';
 
 const FILES = [
   './',
