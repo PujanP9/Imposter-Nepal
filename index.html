@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a2854">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Who Is The Imposter? — Nepali Edition</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="menu-mountains" aria-hidden="true">
+  <div class="peak p1"></div><div class="peak p2"></div><div class="peak p3"></div><div class="snow s1"></div><div class="snow s2"></div>
+</div>
+
+<main class="app">
+  <section id="setupScreen" class="screen setup-screen" aria-labelledby="gameTitle">
+    <header class="brand">
+      <img class="brand-logo" src="imposter-nepal-cartoon-icon.png.png" alt="Imposter Nepal">
+      <div>
+        <p class="eyebrow">PASS THE PHONE PARTY GAME</p>
+        <h1 id="gameTitle">WHO IS THE<br><span>IMPOSTER?</span></h1>
+        <p class="edition">NEPALI EDITION</p>
+      </div>
+    </header>
+
+    <p class="tagline">Pass the phone. Hide your role.<br>Catch the imposter.</p>
+
+    <form id="setupForm" class="setup-card" novalidate>
+      <div class="section-label"><b>01</b><span>YOUR CREW</span></div>
+      <label>How many are playing?</label>
+
+      <div class="count-row">
+        <button id="minusBtn" class="round-btn" type="button" aria-label="Decrease players">−</button>
+        <output id="countOutput" aria-live="polite">4</output>
+        <button id="plusBtn" class="round-btn" type="button" aria-label="Increase players">+</button>
+      </div>
+
+      <div id="namesArea" class="names-area"></div>
+
+      <div class="section-label second"><b>02</b><span>SUSPICION LEVEL</span></div>
+      <label>Number of imposters</label>
+      <div id="imposterOptions" class="imposter-options" role="radiogroup" aria-label="Number of imposters"></div>
+
+      <p id="formError" class="form-error" role="alert"></p>
+      <button class="primary-button" type="submit"><span>🎮</span> START GAME <b>→</b></button>
+      <p class="local-note">100% local • No scores • No spoilers</p>
+    </form>
+
+    <p class="menu-note">A Nepali party game for friends, family & chaos.</p>
+  </section>
+
+  <section id="handoffScreen" class="screen hidden handoff-screen" aria-live="polite">
+    <div class="top-pill">ROUND <b id="roundNumber">1</b><i></i> ORDER RANDOMIZED</div>
+    <div class="screen-icon phone-bubble">📱</div>
+    <p class="eyebrow">PASS THE PHONE</p>
+    <p class="pass-copy">Pass the phone to</p>
+    <h2 id="currentPlayerName">Player</h2>
+    <p class="privacy">Make sure nobody else is looking.</p>
+    <button id="readyBtn" class="primary-button">I'M READY <b>→</b></button>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div id="progressFill"></div></div>
+      <p id="progressText"></p>
+    </div>
+  </section>
+
+  <section id="cardScreen" class="screen hidden card-screen" aria-label="Secret card">
+    <div class="private-pill">🔒 KEEP THIS PRIVATE</div>
+    <p id="cardCounter" class="card-counter">PLAYER 1 OF 4</p>
+
+    <div class="card-stage">
+      <div id="secretCard" class="secret-card" role="button" tabindex="0" aria-label="Tap to reveal your card">
+        <div class="card-inner">
+          <div class="card-face card-front">
+            <div class="card-stripe stripe-top"></div>
+            <img src="icon.svg" class="mini-mark" alt="">
+            <p class="card-brand">WHO IS THE IMPOSTER?</p>
+            <div class="question-stack"><span>?</span><span>?</span><span>?</span></div>
+            <h2>YOUR SECRET</h2>
+            <div class="tap-bubble"><span>👆</span> TAP TO REVEAL</div>
+            <div class="card-sparkle">✦</div>
+            <div class="card-stripe stripe-bottom"></div>
+          </div>
+
+          <div id="cardBack" class="card-face card-back">
+            <div class="card-stripe stripe-top"></div>
+            <div id="roleBadge" class="role-badge">YOUR SECRET</div>
+            <div id="secretWord" class="secret-word"></div>
+            <div class="hint-box">
+              <span>HINT</span>
+              <strong id="secretHint"></strong>
+            </div>
+            <p id="cardInstruction" class="card-instruction">Tap the card again to hide it.</p>
+            <div class="card-stripe stripe-bottom"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p id="flipStatus" class="flip-status">Tap the card to reveal your secret.</p>
+  </section>
+
+  <section id="starterScreen" class="screen hidden starter-screen" aria-live="polite">
+    <div class="starter-badge">🎲</div>
+    <p class="eyebrow">EVERYONE HAS THEIR SECRET</p>
+    <h2>WHO<br><span>STARTS?</span></h2>
+    <div id="starterSlot" class="starter-slot">READY?</div>
+    <p id="starterResult" class="starter-result hidden">Give your first clue.</p>
+    <button id="startGameBtn" class="primary-button hidden">START GAME <b>→</b></button>
+  </section>
+
+  <section id="endScreen" class="screen hidden end-screen">
+    <div class="end-burst">🎉</div>
+    <p class="eyebrow">PHONE PHASE COMPLETE</p>
+    <h2>EVERYONE HAS<br><span>THEIR SECRET!</span></h2>
+    <div class="end-card">
+      <div class="tiny-cards">🃏 ❓ 🃏</div>
+      <p>Put the phone down.</p>
+      <hr>
+      <p>Give your clues.<br>Discuss.<br><strong>Find the Imposter.</strong></p>
+      <small id="endStarter"></small>
+    </div>
+    <button id="newRoundBtn" class="primary-button">🔄 START NEW ROUND</button>
+    <button id="newGameBtn" class="secondary-button">⌂ START NEW GAME</button>
+  </section>
+</main>
+
+<button id="musicBtn" class="music-button" type="button" aria-pressed="false">♪ MUSIC OFF</button>
+
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));
+</script>
+</body>
+</html>
